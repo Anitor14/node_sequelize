@@ -27,7 +27,7 @@ const getAllUsers = async (req, res) => {
 const getSingleUser = async (req, res) => {
   const { uuid } = req.params;
   try {
-    const user = await User.findOne({ where: uuid });
+    const user = await User.findOne({ where: uuid, include: "posts" });
     return res.status(StatusCodes.OK).json(user);
   } catch (error) {
     console.log(error);

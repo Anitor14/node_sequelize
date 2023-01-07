@@ -13,8 +13,11 @@ app.use(express.static("./public"));
 
 // routers
 const userRouter = require("./routes/userRoutes");
+const postRouter = require("./routes/postRoutes");
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/posts", postRouter);
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, async () => {

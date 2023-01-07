@@ -9,6 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // the models contains all the various models and we can destructure from there the models we want.
+      //userId
+      const { User } = models;
+      // stating that this post belongs to the User.
+      this.belongsTo(User, { foreignKey: "userId", as: "user" }); // dedicating an alias for User as user.
+    }
+
+    toJSON() {
+      return { ...this.get(), id: undefined, uuid: undefined };
     }
   }
   Post.init(
