@@ -17,7 +17,7 @@ const getAllUsers = async (req, res) => {
   try {
     const users = await User.findAll();
     return res.status(StatusCodes.OK).json(users);
-  } catch (error) {
+  } catch (error) { 
     console.log(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -25,9 +25,10 @@ const getAllUsers = async (req, res) => {
   }
 };
 const getSingleUser = async (req, res) => {
-  const { uuid } = req.params;
+  const { id } = req.params;
+  console.log(id);
   try {
-    const user = await User.findOne({ where: uuid, include: "posts" });
+    const user = await User.findOne({ where: { uuid: id }, include: "posts" });
     return res.status(StatusCodes.OK).json(user);
   } catch (error) {
     console.log(error);
@@ -37,9 +38,9 @@ const getSingleUser = async (req, res) => {
   }
 };
 const deleteUser = async (req, res) => {
-  const { uuid } = req.params;
+  const { id } = req.params;
   try {
-    const user = await User.findOne({ where: { uuid } }); // finding the user where the user is equals to the uuid.
+    const user = await User.findOne({ where: { uuid: id } }); // finding the user where the user is equals to the uuid.
     await user.destroy();
     return res
       .status(StatusCodes.OK)

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     toJSON() {
-      return { ...this.get(), id: undefined, uuid: undefined }; // this overwrites the user model by adding everything to the json and removing the id.
+      return { ...this.get(), id: undefined }; // this overwrites the user model by adding everything to the json and removing the id.
     }
   }
   User.init(
